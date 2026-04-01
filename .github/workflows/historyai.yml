@@ -4,12 +4,10 @@ on:
   push:
     branches:
     - main
-    paths:
-    - 'history-ai/**'
 
 env:
   ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
-  IMAGE_NAME:       historyai
+  IMAGE_NAME:       history-ai             # ← exact ACR name
   AKS_CLUSTER:      history-aks
   AKS_RG:           history-rg
 
@@ -67,9 +65,9 @@ jobs:
 
     - name: Deploy to AKS
       run: |
-        kubectl set image deployment/historyai \
-          historyai=${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+        kubectl set image deployment/ai-app \
+          ai-app=${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
 
     - name: Verify deployment
       run: |
-        kubectl rollout status deployment/historyai 
+        kubectl rollout status deployment/ai-app

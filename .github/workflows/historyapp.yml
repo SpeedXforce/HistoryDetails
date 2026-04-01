@@ -9,7 +9,7 @@ on:
 
 env:
   ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
-  IMAGE_NAME:       historyapp
+  IMAGE_NAME:       history-app
   AKS_CLUSTER:      history-aks
   AKS_RG:           history-rg
 

@@ -1,16 +1,13 @@
- 
 name: Deploy HistoryDetails
 
 on:
   push:
     branches:
     - main
-    paths:
-    - 'HistoryDetails/**'
 
 env:
   ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
-  IMAGE_NAME:       historydetails
+  IMAGE_NAME:       history-details-api    # ← exact ACR name
   AKS_CLUSTER:      history-aks
   AKS_RG:           history-rg
 
@@ -40,7 +37,6 @@ jobs:
           -t ${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.run_number }} \
           -t ${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest \
           ./HistoryDetails
-        #   ↑ path to Dockerfile
 
     - name: Push to ACR
       run: |
@@ -69,9 +65,9 @@ jobs:
 
     - name: Deploy to AKS
       run: |
-        kubectl set image deployment/historydetails \
-          historydetails=${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+        kubectl set image deployment/api-app \
+          api-app=${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
 
     - name: Verify deployment
       run: |
-        kubectl rollout status deployment/historydetails
+        kubectl rollout status deployment/api-app

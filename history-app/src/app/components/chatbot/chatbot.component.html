@@ -1,0 +1,69 @@
+<!-- Floating Button -->
+<button class="chat-fab" (click)="toggleChat()">
+  {{ isOpen ? '✕' : '💬' }}
+</button>
+
+<!-- Chat Window -->
+<div class="chat-window" *ngIf="isOpen">
+
+  <!-- Header -->
+  <div class="chat-header">
+    <div class="header-info">
+      <span class="bot-icon">🤖</span>
+      <div>
+        <div class="bot-name">History Assistant</div>
+        <div class="bot-status">Powered by Praveen</div>
+      </div>
+    </div>
+    <button class="close-btn" (click)="toggleChat()">✕</button>
+  </div>
+
+  <!-- Messages -->
+  <div class="chat-body">
+
+    <div
+      *ngFor="let msg of messages"
+      class="message-wrapper"
+      [class.user-wrapper]="msg.role === 'user'">
+
+      <span class="bot-avatar"
+            *ngIf="msg.role === 'assistant'">🤖</span>
+
+      <div
+        class="message"
+        [class.user]="msg.role === 'user'"
+        [class.assistant]="msg.role === 'assistant'">
+        {{ msg.content }}
+      </div>
+
+    </div>
+
+    <!-- Typing indicator -->
+    <div class="message-wrapper" *ngIf="isLoading">
+      <span class="bot-avatar">🤖</span>
+      <div class="message assistant typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Input -->
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="userInput"
+      (keypress)="onKeyPress($event)"
+      placeholder="Ask me anything..."
+      [disabled]="isLoading"
+    />
+    <button
+      (click)="sendMessage()"
+      [disabled]="isLoading || !userInput.trim()">
+      ➤
+    </button>
+  </div>    
+
+</div>

@@ -1,0 +1,137 @@
+<div class="search-page">
+  <div class="search-panel">
+
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="search-fields">
+
+        <div class="field-group">
+          <label>History ID <span class="required">*</span></label>
+          <select formControlName="historyId"
+                  [class.error-border]="isInvalid('historyId')">
+            <option value="" disabled>-- Select --</option>
+            <option *ngFor="let id of historyIds" [value]="id">{{ id }}</option>
+          </select>
+          <span class="error-msg" *ngIf="isInvalid('historyId')">Required.</span>
+        </div>
+
+        <div class="field-group">
+          <label>From Date <span class="required">*</span></label>
+          <input
+            type="date"
+            formControlName="fromDate"
+            [class.error-border]="isInvalid('date')"
+          />
+          <span class="error-msg" *ngIf="isInvalid('date')">Required.</span>
+        </div>
+
+        <div class="field-group">
+          <label>To Date <span class="required">*</span></label>
+          <input
+            type="date"
+            formControlName="toDate"
+            [class.error-border]="isInvalid('date')"
+          />
+          <span class="error-msg" *ngIf="isInvalid('date')">Required.</span>
+        </div>
+
+        <div class="field-group">
+          <label>Minute <span class="required">*</span></label>
+          <select formControlName="minute"
+                  [class.error-border]="isInvalid('minute')">
+            <option value="" disabled>-- Select --</option>
+            <option *ngFor="let m of minute" [value]="m">
+              {{ formatMinute(m) }}
+            </option>
+          </select>
+          <span class="error-msg" *ngIf="isInvalid('minute')">Required.</span>
+        </div>
+
+        <div class="field-group btn-group">
+          <button type="submit" class="btn-search" [disabled]="isSearching">
+            {{ isSearching ? 'Searching...' : ' Search' }}
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div class="alert error" *ngIf="errorMessage">
+     {{ errorMessage }}
+  </div>
+
+  <div class="table-section" *ngIf="hasSearched">
+
+    <div class="table-header">
+      <span class="result-count">
+        {{ allResults.length }} records found
+      </span>
+      <span class="page-info" *ngIf="allResults.length > 0">
+        Showing {{ startRecord }} – {{ endRecord }} of {{ allResults.length }}
+      </span>
+    </div>
+
+    <div class="no-results" *ngIf="allResults.length === 0">
+      No records found for the selected criteria.
+    </div>
+
+    <div class="table-wrapper" *ngIf="allResults.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Meter Name</th>
+            <th>Timestamp</th>
+            <th>Status Tag</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of pagedResults; let i=index">
+            <td>{{ row.meterName }}</td>
+            <td>{{ row.timestamp | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>
+                <input
+                type="text"
+                class="edit-input"
+                [(ngModel)]="row.statusTag"
+                (blur) = "onFieldBlur(row,i)"
+                />
+            </td>
+            <td>
+                <input
+                type="text"
+                class="edit-input"
+                [(ngModel)]="row.value"
+                (blur)="onFieldBlur(row,i)"
+                />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button class="page-btn"
+              [disabled]="currentPage === 1"
+              (click)="goToPage(currentPage - 1)">
+        ‹ Prev
+      </button>
+
+      <button
+        *ngFor="let page of pages"
+        class="page-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+
+      <button class="page-btn"
+              [disabled]="currentPage === totalPages"
+              (click)="goToPage(currentPage + 1)">
+        Next ›
+      </button>
+    </div>
+
+  </div>
+
+</div>

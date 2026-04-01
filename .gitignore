@@ -1,0 +1,18 @@
+Paste this content:
+```
+# .NET
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+
+# Node
+**/node_modules/
+**/.angular/
+**/dist/
+
+# Environment files
+**/appsettings.Development.json
+
+# Visual Studio
+**/.vs/

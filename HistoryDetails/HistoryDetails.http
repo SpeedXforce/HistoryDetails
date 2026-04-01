@@ -1,0 +1,6 @@
+@HistoryDetails_HostAddress = http://localhost:5134
+
+GET {{HistoryDetails_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,13 @@
+<div class="list-page">
+    <div class="page-header">
+        <h1>History Records</h1>
+        <button class="create-btn" (click)="openCreateDialog()">+ Create History</button>
+    </div>
+    <div class="alert" *ngIf="successMessage">
+        {{successMessage}}
+    </div>
+
+    <app-search-history></app-search-history>
+
+    <app-chatbot></app-chatbot>
+</div>

@@ -1,0 +1,83 @@
+<h2 mat-dialog-title>Create History</h2>
+
+<mat-dialog-content>
+
+  <div class="alert error" *ngIf="errorMessage"> {{ errorMessage }}</div>
+
+  <form [formGroup]="form">
+
+    <div class="field-group">
+      <label for="historyId">
+        History ID <span class="required">*</span>
+      </label>
+      <select id="historyId" formControlName="historyId"
+              [class.error-border]="isInvalid('historyId')">
+        <option value="" disabled>-- Select History ID --</option>
+        <option *ngFor="let id of historyIds" [value]="id">{{ id }}</option>
+      </select>
+      <span class="error-msg" *ngIf="isInvalid('historyId')">
+        History ID is required.
+      </span>
+    </div>
+
+    <div class="field-group">
+      <label for="timestamp">
+        Timestamp <span class="required">*</span>
+      </label>
+      <input
+        id="timestamp"
+        type="datetime-local"
+        formControlName="timestamp"
+        [class.error-border]="isInvalid('timestamp')"
+      />
+      <span class="error-msg" *ngIf="isInvalid('timestamp')">
+        Timestamp is required.
+      </span>
+    </div>
+
+    <div class="field-group">
+      <label for="value">
+        Value <span class="required">*</span>
+      </label>
+      <input
+        id="value"
+        type="number"
+        step="any"
+        placeholder="Enter numerical value"
+        formControlName="value"
+        [class.error-border]="isInvalid('value')"
+      />
+      <span class="error-msg" *ngIf="isInvalid('value')">
+        Value is required.
+      </span>
+    </div>
+
+    <div class="field-group">
+      <label for="status">
+        Status <span class="required">*</span>
+      </label>
+      <input
+        id="status"
+        type="text"
+        placeholder="Enter status"
+        formControlName="status"
+        [class.error-border]="isInvalid('status')"
+      />
+      <span class="error-msg" *ngIf="isInvalid('status')">
+        Status is required.
+      </span>
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="btn-cancel" type="button" (click)="onCancel()">
+    Cancel
+  </button>
+  <button class="btn-save" type="button"
+          [disabled]="isSaving" (click)="onSave()">
+    {{ isSaving ? 'Saving...' : 'Save' }}
+  </button>
+</mat-dialog-actions>

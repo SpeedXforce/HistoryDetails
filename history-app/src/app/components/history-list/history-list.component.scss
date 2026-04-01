@@ -1,0 +1,47 @@
+.list-page {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  animation: colorLoop 6s infinite;
+}
+
+@keyframes colorLoop {
+  0%   { color: #75829c; }
+  50%  { color: #4f46e5; }
+  100% { color: #ff0000; }
+}
+}
+
+.create-btn {
+  background: #3182ce;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover { background: #2b6cb0; }
+}
+
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #f0fff4;
+  color: #276749;
+  border: 1px solid #9ae6b4;
+  font-weight: 500;
+}

@@ -1,0 +1,6 @@
+@HistoryAI_HostAddress = http://localhost:5296
+
+GET {{HistoryAI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

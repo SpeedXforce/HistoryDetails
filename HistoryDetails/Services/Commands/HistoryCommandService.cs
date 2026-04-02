@@ -11,7 +11,24 @@ namespace HistoryDetails.Services.Commands
         {
             _repo = repo;
         }
-        public Task SaveHistoryAsync(CreateHistoryDTO dto) => _repo.SaveHistoryAsync(dto);
-        public Task UpdateHistoryAsync(UpdateHistoryDTO dto) => _repo.UpdateHistoryAsync(dto);
+        public async Task SaveHistoryAsync(CreateHistoryDTO dto) {
+
+            if (string.IsNullOrEmpty(dto.HistoryId))
+            {
+                throw new ArgumentException("HistoryId is required");
+            }
+
+            if (dto.Value <= 0) {
+                throw new ArgumentException("Value should not be less than zero!");
+            }
+
+            await _repo.SaveHistoryAsync(dto);
+
+        } 
+        public async Task UpdateHistoryAsync(UpdateHistoryDTO dto) {
+
+            await _repo.UpdateHistoryAsync(dto);
+
+        } 
     }
 }

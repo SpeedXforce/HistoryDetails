@@ -14,7 +14,15 @@ namespace HistoryDetails.Services.Queries
 
         public Task<IEnumerable<string>> GetHistoryIdsAsync() => _repo.GetHistoryIdsAsync();
 
-        public Task<IEnumerable<HistoryResponseDTO>> SearchHistoryAsync(SearchHistoryDTO dto) => _repo.SearchHistoryAsync(dto);
+        public Task<IEnumerable<HistoryResponseDTO>> SearchHistoryAsync(SearchHistoryDTO dto) 
+        {
+            if(dto.Minute < 0)
+            {
+                throw new ArgumentException("Minute can't be a negative value");
+            }
+
+           return _repo.SearchHistoryAsync(dto); 
+        }
 
     }
 }

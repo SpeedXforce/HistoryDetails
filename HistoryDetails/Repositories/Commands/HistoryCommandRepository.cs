@@ -9,7 +9,7 @@ namespace HistoryDetails.Repositories.Commands
         private readonly HistoryDbContext _db;
         public HistoryCommandRepository(HistoryDbContext db)
         {
-            _db = db;
+            _db = db; 
         }
 
         public async Task SaveHistoryAsync(CreateHistoryDTO dto)

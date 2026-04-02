@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../HistoryDetails/HistoryDetails.csproj" />
+  <Project Path="HistoryDetails.Tests.csproj" />
+</Solution>

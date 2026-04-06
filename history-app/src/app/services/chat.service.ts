@@ -22,7 +22,7 @@ export interface ChatResponse{
 })
 export class ChatService {
 
-  private baseUrl = 'https://localhost:44355/api/Chat'
+  private baseUrl = 'http://4.213.42.55/api/Chat'
 
 
   constructor(private http: HttpClient) { }

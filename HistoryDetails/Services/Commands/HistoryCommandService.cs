@@ -27,6 +27,11 @@ namespace HistoryDetails.Services.Commands
         } 
         public async Task UpdateHistoryAsync(UpdateHistoryDTO dto) {
 
+            if (string.IsNullOrWhiteSpace(dto.Status))
+            {
+                throw new ArgumentException("Status should be either ok or missing");
+            }
+
             await _repo.UpdateHistoryAsync(dto);
 
         } 

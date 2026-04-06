@@ -35,6 +35,21 @@ namespace HistoryDetails.Tests.Services.Commands
 
         }
 
+        [Fact]
+        public async Task UpdateHistoryAsync_StatusIsEmptyOrNull()
+        {
+            var dto = new UpdateHistoryDTO
+            {
+                Id = 1,
+                Status = "",
+                Value = 8681.0
+            };
+
+            await Assert.ThrowsAsync<ArgumentException>(() => _service.UpdateHistoryAsync(dto));
+            _repo.Verify(r => r.UpdateHistoryAsync(It.IsAny<UpdateHistoryDTO>()), Times.Never);
+  
+        }
+
 
     }
 }

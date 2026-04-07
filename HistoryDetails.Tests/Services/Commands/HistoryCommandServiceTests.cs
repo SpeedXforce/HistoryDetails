@@ -36,6 +36,21 @@ namespace HistoryDetails.Tests.Services.Commands
         }
 
         [Fact]
+        public async Task SaveHistoryAsync_StatusIsNull()
+        {
+            var dto = new CreateHistoryDTO
+            {
+                HistoryId = "Test2",
+                Status = null,
+                Timestamp = DateTime.Now,
+                Value = 9678.08
+            };
+
+            await Assert.ThrowsAsync<ArgumentException>(() => _service.SaveHistoryAsync(dto));
+            _repo.Verify(r => r.SaveHistoryAsync(It.IsAny<CreateHistoryDTO>()), Times.Never);
+        }
+
+        [Fact]
         public async Task UpdateHistoryAsync_StatusIsEmptyOrNull()
         {
             var dto = new UpdateHistoryDTO

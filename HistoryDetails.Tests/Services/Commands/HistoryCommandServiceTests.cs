@@ -40,7 +40,7 @@ namespace HistoryDetails.Tests.Services.Commands
         {
             var dto = new CreateHistoryDTO
             {
-                HistoryId = "Test2",
+                HistoryId = "Test History",
                 Status = null,
                 Timestamp = DateTime.Now,
                 Value = 9678.08

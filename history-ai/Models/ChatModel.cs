@@ -21,8 +21,6 @@
         }
 
 
-        // openRouter 
-
         public class AIRequest
         {
             //public string Model { get; set; } = string.Empty;

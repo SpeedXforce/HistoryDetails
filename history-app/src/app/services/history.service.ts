@@ -16,10 +16,6 @@ export class HistoryService {
     return this.http.get<string[]>(`${this.baseUrl}/ids`);
   }
 
-  // saveHistory(dto: CreateHistoryDTO):Observable<void>{
-  //   return this.http.post<void>(`${this.baseUrl}/create`,dto);
-  // }
-
   saveHistory(dto: CreateHistoryDTO):Observable<any>{
     return this.http.post(`${this.baseUrl}/create`,dto,{responseType: 'text'});
   }

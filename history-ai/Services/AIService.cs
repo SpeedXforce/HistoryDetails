@@ -1,8 +1,11 @@
 ﻿using HistoryAI.Models;
+using HistoryAI.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using static HistoryAI.Models.ChatModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HistoryAI.Services
 {
@@ -10,11 +13,13 @@ namespace HistoryAI.Services
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _config;
+        private readonly HistoryDbContext _db;
 
-        public AIService(HttpClient httpClient, IConfiguration config)
+        public AIService(HttpClient httpClient, IConfiguration config, HistoryDbContext dbContext)
         {
             _httpClient = httpClient;
             _config = config;
+            _db = dbContext;
         }
 
         public async Task<ChatResponse> ChatAsync(ChatRequest request)
@@ -30,18 +35,30 @@ namespace HistoryAI.Services
                 var apiUrl = $"{endpoint}/openai/deployments/{deploymentName}/chat/completions?api-version={apiVersion}";
                 Console.WriteLine($"Calling: {apiUrl}");
 
-                // System prompt
+
+                var dbData = await _db.HistoryIds.FromSqlRaw("EXEC dbo.Sp_GetHistoryId")
+                .ToListAsync();
+
+                var content = string.Join("\n", dbData.Select(x=>x.History_ID));
+
                 var systemPrompt = @"
                     You are a helpful assistant for a History Management System.
                     The system stores history records with:
-                    - History ID  → meter identifier (e.g H001)
+                    - History ID  → meter identifier (e.g Volume or Energy)
                     - Timestamp   → date and time of reading
                     - Status Tag  → status of the reading
-                    - Value       → numerical reading
+                    - Value       → numerical readings
                     Keep responses short, clear and friendly.
+                    You can ask the user what they'd like to see,
+                    surf internet and get data if u don't know something and
+                    if they asks HistoryId - ask them to give an input 
+                    and that input should be in this format '/Bankstown/GM203_SR_Volume'
+                    It means that /(historyName)/(Volume) and you can get the content from here - 
                 ";
 
-                // Build messages
+                systemPrompt = systemPrompt + $"{content}";
+
+
                 var messages = new List<AIMessage>
                 {
                     new AIMessage

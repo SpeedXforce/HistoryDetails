@@ -1,6 +1,7 @@
 ﻿using HistoryDetails.Models;
 using HistoryDetails.Repositories.Queries;
 using HistoryDetails.Services.Queries;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace HistoryDetails.Tests.Services.Queries
     {
         private readonly Mock<IHistoryQueryRepository> _repo;
         private readonly HistoryQueryService _service;
+        private readonly Mock<ILogger<HistoryQueryService>> _logger;
 
         public HistoryQueryServiceTests()
         {
             _repo = new Mock<IHistoryQueryRepository>();
-            _service = new HistoryQueryService(_repo.Object);
+            _logger = new Mock<ILogger<HistoryQueryService>>();
+            _service = new HistoryQueryService(_repo.Object,_logger.Object);
         }
 
         [Fact]

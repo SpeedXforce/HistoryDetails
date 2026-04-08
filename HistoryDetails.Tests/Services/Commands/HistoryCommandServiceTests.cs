@@ -1,6 +1,8 @@
-﻿using HistoryDetails.Models;
+﻿using Castle.Core.Logging;
+using HistoryDetails.Models;
 using HistoryDetails.Repositories.Commands;
 using HistoryDetails.Services.Commands;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -10,12 +12,15 @@ namespace HistoryDetails.Tests.Services.Commands
     public class HistoryCommandServiceTests
     {
         private readonly Mock<IHistoryCommandRepository> _repo;
+        private readonly Mock<ILogger<HistoryCommandService>> _logger;
         private readonly HistoryCommandService _service;
+
 
         public HistoryCommandServiceTests()
         {
             _repo = new Mock<IHistoryCommandRepository>();
-            _service = new HistoryCommandService(_repo.Object);
+            _logger = new Mock<ILogger<HistoryCommandService>>();
+            _service = new HistoryCommandService(_repo.Object,_logger.Object);
         }
 
         [Fact]

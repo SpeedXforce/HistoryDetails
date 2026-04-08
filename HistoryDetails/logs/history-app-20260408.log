@@ -1,0 +1,45 @@
+[14:14:54 INF]Starting HistoryDetails API
+[14:14:54 INF]HTTP GET / responded 404 in 9.1175 ms
+[14:14:56 INF]HTTP GET /swagger/index.html responded 304 in 66.2033 ms
+[14:14:56 INF]HTTP GET /swagger/swagger-ui.css responded 304 in 12.2636 ms
+[14:14:56 INF]HTTP GET /swagger/index.css responded 304 in 12.1696 ms
+[14:14:56 INF]HTTP GET /swagger/swagger-ui-bundle.js responded 304 in 22.8104 ms
+[14:14:56 INF]HTTP GET /swagger/index.js responded 304 in 0.5465 ms
+[14:14:56 INF]HTTP GET /swagger/swagger-ui-standalone-preset.js responded 304 in 7.4622 ms
+[14:14:57 INF]HTTP GET /swagger/v1/swagger.json responded 200 in 15.3391 ms
+[14:14:57 INF]HTTP GET /in responded 404 in 0.2068 ms
+[14:15:00 INF]HTTP GET /swagger/index.html responded 304 in 0.2262 ms
+[14:15:00 INF]HTTP GET /swagger/swagger-ui.css responded 304 in 0.0732 ms
+[14:15:00 INF]HTTP GET /swagger/swagger-ui-bundle.js responded 304 in 0.0300 ms
+[14:15:00 INF]HTTP GET /swagger/index.css responded 304 in 0.0653 ms
+[14:15:00 INF]HTTP GET /swagger/swagger-ui-standalone-preset.js responded 304 in 0.0872 ms
+[14:15:00 INF]HTTP GET /swagger/index.js responded 304 in 0.2308 ms
+[14:15:01 INF]HTTP GET /swagger/v1/swagger.json responded 200 in 3.7217 ms
+[14:15:43 INF]Starting HistoryDetails API
+[14:15:43 INF]HTTP GET / responded 404 in 9.1988 ms
+[14:15:47 INF]HTTP GET /swagger/index.html responded 304 in 50.2726 ms
+[14:15:47 INF]HTTP GET /swagger/index.css responded 304 in 9.6248 ms
+[14:15:47 INF]HTTP GET /swagger/swagger-ui.css responded 304 in 9.6247 ms
+[14:15:47 INF]HTTP GET /swagger/swagger-ui-bundle.js responded 304 in 10.0672 ms
+[14:15:47 INF]HTTP GET /swagger/index.js responded 304 in 0.4299 ms
+[14:15:47 INF]HTTP GET /swagger/swagger-ui-standalone-preset.js responded 304 in 6.6844 ms
+[14:15:47 INF]HTTP GET /swagger/v1/swagger.json responded 200 in 12.9730 ms
+[14:15:56 INF]Get History Ids method called
+[14:15:56 INF]Getting history Ids
+[14:15:58 INF]Get history Ids completed with 24 records
+[14:15:58 INF]Method returned 24 records.
+[14:15:58 INF]HTTP GET /api/History/ids responded 200 in 2414.3959 ms
+[16:03:46 INF]Starting HistoryDetails API
+[16:03:46 INF]HTTP GET / responded 404 in 14.4463 ms
+[16:03:50 INF]HTTP GET /swagger/index.html responded 304 in 70.9913 ms
+[16:03:50 INF]HTTP GET /swagger/index.css responded 304 in 20.8956 ms
+[16:03:50 INF]HTTP GET /swagger/swagger-ui.css responded 304 in 20.8973 ms
+[16:03:50 INF]HTTP GET /swagger/swagger-ui-bundle.js responded 304 in 25.9037 ms
+[16:03:50 INF]HTTP GET /swagger/index.js responded 304 in 3.1644 ms
+[16:03:50 INF]HTTP GET /swagger/swagger-ui-standalone-preset.js responded 304 in 3.9465 ms
+[16:03:50 INF]HTTP GET /swagger/v1/swagger.json responded 200 in 18.4973 ms
+[16:04:41 INF]Get History Ids method called
+[16:04:41 INF]Getting history Ids
+[16:04:47 INF]Get history Ids completed with 24 records
+[16:04:47 INF]Method returned 24 records.
+[16:04:47 INF]HTTP GET /api/History/ids responded 200 in 5605.1712 ms

@@ -23,29 +23,29 @@ namespace HistoryDetails.Tests.Services.Commands
             _service = new HistoryCommandService(_repo.Object,_logger.Object);
         }
 
-        //[Fact]
-        //public async Task SaveHistoryAsync_HistoryIdIsMissing()
-        //{
-        //    var dto = new CreateHistoryDTO
-        //    {
-        //        HistoryId = null,
-        //        Status = "{ok}",
-        //        Timestamp = DateTime.Now,
-        //        Value = 6527268.09
-        //    };
+        [Fact]
+        public async Task SaveHistoryAsync_HistoryIdIsMissing()
+        {
+            var dto = new CreateHistoryDTO
+            {
+                HistoryId = null,
+                Status = "{ok}",
+                Timestamp = DateTime.Now,
+                Value = 6527268.09
+            };
 
 
-        //   await Assert.ThrowsAsync<ArgumentException>(() => _service.SaveHistoryAsync(dto));
-        //   _repo.Verify(r => r.SaveHistoryAsync(It.IsAny<CreateHistoryDTO>()), Times.Never);
+            await Assert.ThrowsAsync<ArgumentException>(() => _service.SaveHistoryAsync(dto));
+            _repo.Verify(r => r.SaveHistoryAsync(It.IsAny<CreateHistoryDTO>()), Times.Never);
 
-        //}
+        }
 
         [Fact]
         public async Task SaveHistoryAsync_StatusIsNull()
         {
             var dto = new CreateHistoryDTO
             {
-                HistoryId = "Test History4",
+                HistoryId = "Test History1",
                 Status = null,
                 Timestamp = DateTime.Now,
                 Value = 9678.08

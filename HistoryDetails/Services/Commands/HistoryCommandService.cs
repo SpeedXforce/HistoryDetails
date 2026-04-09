@@ -15,11 +15,7 @@ namespace HistoryDetails.Services.Commands
         }
         public async Task SaveHistoryAsync(CreateHistoryDTO dto) {
 
-            if (string.IsNullOrEmpty(dto.HistoryId))
-            {
-                _logger.LogError("History Id is null or empty");
-                throw new ArgumentException("HistoryId is required");
-            }
+            
 
             if (string.IsNullOrEmpty(dto.Status))
             {

@@ -55,5 +55,7 @@ namespace HistoryDetails.Controllers
             await _commandService.UpdateHistoryAsync(dto);
             return Ok();
         }
+
+
     }
 }
